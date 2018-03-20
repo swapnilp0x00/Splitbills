@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'static#root'
   get '/home',to: 'static#home'
 
