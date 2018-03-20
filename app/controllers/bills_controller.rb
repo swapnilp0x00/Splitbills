@@ -10,7 +10,6 @@ class BillsController < ApplicationController
   # GET /bills/1
   # GET /bills/1.json
   def show
-    User.order(:id).each{|user| @bill.bill_parts.build(participant_id:user.id) }
   end
 
   # GET /bills/new
@@ -66,7 +65,7 @@ class BillsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bill
-      @bill = Bill.find(params[:id])
+      @bill = Bill.includes(:bill_parts,:user).find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

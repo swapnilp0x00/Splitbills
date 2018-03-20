@@ -9,7 +9,8 @@
       <th>Date</th>
       <th>Location</th>
       <th>Total amount</th>
-      <th>User</th>
+      <th>Created by</th>
+      <th>Added</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,7 +22,8 @@
         <td><%= bill.date %></td>
         <td><%= bill.location %></td>
         <td><%= bill.total_amount %></td>
-        <td><%= bill.user_id %></td>
+        <td><%= bill.user.name %></td>
+        <td><%= time_ago_in_words(bill.created_at) + ' ago' %></td>
         <td><%= link_to 'Show', bill %></td>
         <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

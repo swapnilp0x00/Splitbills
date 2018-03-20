@@ -24,5 +24,12 @@
   <strong>User:</strong>
   <%= @bill.user_id %>
 </p>
-
+<h2>Participants and Contributions</h2>
+<p>
+  <%@bill.bill_parts.each do |bill_part|%>
+    <p>
+      <%=bill_part.user.name%> : <%=bill_part.amount%>
+    </p>
+  <%end%>
+</p>
 <%= link_to 'Back', bills_path %>
