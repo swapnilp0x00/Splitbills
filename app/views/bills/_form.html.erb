@@ -31,7 +31,8 @@
     <%= form.number_field :total_amount, id: :bill_total_amount , min: 0%>
   </div>
 
-
+  <h2>Leave amount blank if participant was not present</h2>
+  <h2>Enter zero if participant was present and didn't pay</h2>
   <div class="field">
     <%= form.fields_for :bill_parts do |bill_part_form|%>
       <div class="field">
