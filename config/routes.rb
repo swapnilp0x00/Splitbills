@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bills ,except: [:edit ,:update]
   devise_for :users
   root 'static#root'
   get '/home',to: 'static#home'

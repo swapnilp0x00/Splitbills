@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @bill.event %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @bill.date %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @bill.location %>
+</p>
+
+<p>
+  <strong>Total amount:</strong>
+  <%= @bill.total_amount %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bill.user_id %>
+</p>
+
+<%= link_to 'Back', bills_path %>
