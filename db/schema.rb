@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320122925) do
+ActiveRecord::Schema.define(version: 20180320130923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bill_parts", force: :cascade do |t|
+    t.integer "bill_id"
+    t.integer "participant_id"
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bills", force: :cascade do |t|
     t.string "event"
