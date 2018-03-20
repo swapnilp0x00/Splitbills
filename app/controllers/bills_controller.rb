@@ -28,7 +28,6 @@ class BillsController < ApplicationController
   # POST /bills.json
   def create
     @bill = current_user.bills.new(bill_params)
-    User.order(:id).each{|user| @bill.bill_parts.build(participant_id:user.id) }
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, notice: 'Bill was successfully created.' }
