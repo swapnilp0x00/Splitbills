@@ -15,7 +15,10 @@ class BillsController < ApplicationController
 
   # GET /bills/new
   def new
-    @bill = Bill.new
+    @bill = current_user.bills.new
+
+    # Just a work around
+    User.all.each{|user| @bill.bill_parts.build(participant_id:user.id) }
   end
 
   # GET /bills/1/edit
@@ -70,6 +73,6 @@ class BillsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bill_params
-      params.require(:bill).permit(:event, :date, :location, :total_amount, :user_id)
+      params.require(:bill).permit(:event, :date, :location, :total_amount, :user_id , bill_parts_attributes: [:participant_id , :amount])
     end
 end

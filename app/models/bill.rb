@@ -7,4 +7,6 @@ class Bill < ApplicationRecord
 
   accepts_nested_attributes_for :bill_parts,
   reject_if: lambda{|attrs| attrs['participant_id'].blank? || attrs['amount'].blank?}
+
+  validates :total_amount, :numericality => { :greater_than_or_equal_to => 0 }
 end

@@ -1,4 +1,4 @@
-<%= form_with(model: bill, local: true) do |form| %>
+<%= form_for bill do |form| %>
   <% if bill.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bill.errors.count, "error") %> prohibited this bill from being saved:</h2>
@@ -28,12 +28,25 @@
 
   <div class="field">
     <%= form.label :total_amount %>
-    <%= form.number_field :total_amount, id: :bill_total_amount %>
+    <%= form.number_field :total_amount, id: :bill_total_amount , min: 0%>
   </div>
 
   <div class="field">
     <%= form.label :user_id %>
     <%= form.number_field :user_id, id: :bill_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.fields_for :bill_parts do |bill_part_form|%>
+      <div class="field">
+        <%= bill_part_form.label :participant_id%>
+        <%= bill_part_form.collection_select :participant_id , User.all ,:id , :name,include_blank: true,disabled:true%>
+      </div>
+      <div class="field">
+        <%= bill_part_form.label :amount%>
+        <%= bill_part_form.number_field :amount, min:0%>
+      </div>
+    <%end%>
   </div>
 
   <div class="actions">

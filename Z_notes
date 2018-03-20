@@ -1,2 +1,8 @@
 Bill
-  Event,Date,Location, Total , People present , 
+  Event,Date,Location, Total , People present ,
+
+  <!-- <div class="field">
+    <%= form.fields_for :bill_parts do |f| %>
+    <%= f.label :Participant %>
+    <%= f :user_id, id: :bill_user_id %>
+  </div> -->

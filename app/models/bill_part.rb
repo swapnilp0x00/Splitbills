@@ -3,4 +3,5 @@ class BillPart < ApplicationRecord
   belongs_to :bill , class_name: 'Bill', foreign_key: :bill_id , primary_key: :id , inverse_of: :bill_parts
 
   validates_presence_of :participant_id ,:amount
+  validates :amount, :numericality => { :greater_than_or_equal_to => 0 }
 end
