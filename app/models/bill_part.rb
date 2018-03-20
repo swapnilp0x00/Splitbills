@@ -1,6 +1,6 @@
 class BillPart < ApplicationRecord
-  belongs_to :user
-  belongs_to :bill
+  belongs_to :user , class_name: 'User', foreign_key: :participant_id , primary_key: :id
+  belongs_to :bill , class_name: 'Bill', foreign_key: :bill_id , primary_key: :id , inverse_of: :bill_parts
 
-  validates_presence_of :bill_id, :participant_id ,:amount
+  validates_presence_of :participant_id ,:amount
 end
