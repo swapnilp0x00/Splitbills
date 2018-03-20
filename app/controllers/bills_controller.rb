@@ -1,7 +1,6 @@
 class BillsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
-
   # GET /bills
   # GET /bills.json
   def index
@@ -11,14 +10,14 @@ class BillsController < ApplicationController
   # GET /bills/1
   # GET /bills/1.json
   def show
+    User.order(:id).each{|user| @bill.bill_parts.build(participant_id:user.id) }
   end
 
   # GET /bills/new
   def new
     @bill = current_user.bills.new
-
     # Just a work around
-    User.all.each{|user| @bill.bill_parts.build(participant_id:user.id) }
+    User.order(:id).each{|user| @bill.bill_parts.build(participant_id:user.id) }
   end
 
   # GET /bills/1/edit
@@ -28,8 +27,8 @@ class BillsController < ApplicationController
   # POST /bills
   # POST /bills.json
   def create
-    @bill = Bill.new(bill_params)
-
+    @bill = current_user.bills.new(bill_params)
+    User.order(:id).each{|user| @bill.bill_parts.build(participant_id:user.id) }
     respond_to do |format|
       if @bill.save
         format.html { redirect_to @bill, notice: 'Bill was successfully created.' }

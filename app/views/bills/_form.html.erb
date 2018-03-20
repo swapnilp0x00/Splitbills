@@ -31,10 +31,6 @@
     <%= form.number_field :total_amount, id: :bill_total_amount , min: 0%>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id, id: :bill_user_id %>
-  </div>
 
   <div class="field">
     <%= form.fields_for :bill_parts do |bill_part_form|%>
