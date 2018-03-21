@@ -1,16 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Bills</h1>
-
+<%=create_dashboard_button%>
+<h1>List of all the bills</h1>
 <table class="table">
   <thead>
     <tr>
+      <th>Bill id</th>
       <th>Event</th>
       <th>Date</th>
       <th>Location</th>
       <th>Total amount</th>
-      <th>Created by</th>
-      <th>Added</th>
+      <th>Added by</th>
+      <th>Per head</th>
+      <th>Added </th>
       <th colspan="3">Actions</th>
     </tr>
   </thead>
@@ -18,13 +20,15 @@
   <tbody>
     <% @bills.each do |bill| %>
       <tr>
+        <td><%=bill.id%></td>
         <td><%= bill.event %></td>
         <td><%= bill.date %></td>
         <td><%= bill.location %></td>
         <td><%= bill.total_amount %></td>
         <td><%= bill.user.name %></td>
+        <td><%= bill.get_split_per_head%></td>
         <td><%= time_ago_in_words(bill.created_at) + ' ago' %></td>
-        <td><%= link_to 'Show', bill  , class: "btn btn-primary" %></td>
+        <td><%= link_to 'Details', bill  , class: "btn btn-primary" %></td>
         <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-primary btn-danger" %></td>
       </tr>
     <% end %>

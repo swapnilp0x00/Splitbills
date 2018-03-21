@@ -1,33 +1,41 @@
-<p>
-  <strong>Event:</strong>
-  <%= @bill.event %>
-</p>
+<h2><strong>Bill Details</strong></h2>
+<div class="container">
+  <p>
+    <strong>Event:</strong>
+    <%= @bill.event %>
+  </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @bill.date %>
-</p>
+  <p>
+    <strong>Date:</strong>
+    <%= @bill.date %>
+  </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @bill.location %>
-</p>
+  <p>
+    <strong>Location:</strong>
+    <%= @bill.location %>
+  </p>
 
-<p>
-  <strong>Total amount:</strong>
-  <%= @bill.total_amount %>
-</p>
+  <p>
+    <strong>Total amount:</strong>
+    <%= @bill.total_amount %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @bill.user_id %>
-</p>
-<h2>Participants and Contributions</h2>
-<p>
-  <%@bill.bill_parts.each do |bill_part|%>
-    <p>
-      <%=bill_part.user.name%> : <%=bill_part.amount%>
-    </p>
-  <%end%>
-</p>
-<%= link_to 'Back', bills_path %>
+  <p>
+    <strong>User:</strong>
+    <%= @bill.user_id %>
+  </p>
+</div>
+
+<h2><strong>Amount paid by each participant for this bill</strong></h2>
+
+<div class="container">
+  <p>
+    <%@bill.bill_parts.each do |bill_part|%>
+      <p>
+        <%=bill_part.user.name%> : <%=bill_part.amount%>
+      </p>
+    <%end%>
+  </p>
+</div>
+<br/>
+<%=create_back_button%>

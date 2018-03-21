@@ -1,17 +1,26 @@
-<h1>Welcome to split App</h1>
+<div class="">
+  <h1>Welcome <%=current_user.name%> to split App</h1>
+</div>
 
-  <div class="">
-    <%if @amount > 0%>
-      <h1>You Total lent : <%=@amount%></h1>
-    <%elsif @amount < 0%>
-      <h1>You Total borrowed : <%=@amount.abs%></h1>
+
+  <div class="container">
+    <%if !@amount.nil?%>
+      <%if @amount > 0%>
+        <h1>You have total lent : <%=@amount%> Rs</h1>
+      <%elsif @amount < 0%>
+        <h1>You have total borrowed : <%=@amount.abs%> Rs</h1>
+      <%else%>
+        <h1>You don't borrow or lent anything</h1>
+      <%end%>
     <%end%>
   </div>
 
-  <div class="">
+  <div class="container">
     <p>positive value means you have lent money</p>
     <p>negative value means you have borrowed money</p>
     <%=@borrowing_hash%>
   </div>
 
+<br/>
 <%=create_new_bill_button%>
+<%=create_show_bills_button%>

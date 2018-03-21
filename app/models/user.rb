@@ -25,7 +25,6 @@ class User < ApplicationRecord
       bill_and_split_hash[bill.id] = bill.get_split_per_head
     end
     bill_and_split_hash
-
     bills.each do |bill|
       temp_hash = {}
       bill_parts = BillPart.where(bill_id: bill.id)

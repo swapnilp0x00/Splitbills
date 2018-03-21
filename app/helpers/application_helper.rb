@@ -12,4 +12,17 @@ module ApplicationHelper
       link_to 'Create New Bill', new_bill_path , class: "btn btn-primary btn-success"
     end
   end
+  def create_show_bills_button
+    if current_user
+      link_to 'Show Bills', bills_path , class: "btn btn-primary btn-success"
+    end
+  end
+  def create_dashboard_button
+    if current_user
+      link_to 'Dashboard', home_path , class: "btn btn-primary btn-info"
+    end
+  end
+  def create_back_button
+    link_to 'Back', bills_path , class:"btn btn-primary btn-info"
+  end
 end
