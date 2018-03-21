@@ -1,5 +1,6 @@
 <div class="">
   <h1>Welcome <%=current_user.name%> to split App</h1>
+  <h1>User id : <%=current_user.id%></h1>
 </div>
 
 
@@ -18,7 +19,11 @@
   <div class="container">
     <p>positive value means you have lent money</p>
     <p>negative value means you have borrowed money</p>
-    <%=@borrowing_hash%>
+    
+    <p><strong>hash for each bill</strong></p>
+    <%=@billwise_hash%>
+    <p><strong>total hash</strong></p>
+    <%=@total_hash%>
   </div>
 
 <br/>

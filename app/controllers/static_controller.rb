@@ -4,7 +4,8 @@ class StaticController < ApplicationController
   end
 
   def home
-    @borrowing_hash = current_user.total_borrowing
-    @amount = @borrowing_hash[current_user.id] || 0
+    @billwise_hash = current_user.billwise_borrowings
+    @total_hash = current_user.total_borrowing
+    @amount = @total_hash[current_user.id] || 0
   end
 end
