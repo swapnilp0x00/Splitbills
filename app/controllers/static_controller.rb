@@ -5,7 +5,6 @@ class StaticController < ApplicationController
 
   def home
     @borrowing_hash = current_user.total_borrowing
-    
     @amount = @borrowing_hash[current_user.id]
   end
 end
