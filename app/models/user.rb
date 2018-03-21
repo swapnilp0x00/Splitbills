@@ -6,4 +6,8 @@ class User < ApplicationRecord
 
   has_many :bills , class_name: 'Bill',foreign_key: :user_id, primary_key: :id
   has_many :bill_parts , class_name:'BillPart' , foreign_key: :participant_id , primary_key: :id
+
+  def get_bills
+    BillPart.where(participant_id:self.id)
+  end
 end

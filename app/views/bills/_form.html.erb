@@ -36,15 +36,16 @@
   <div class="col-md-6">
     <p><strong>Enter 0 if present and not paid</strong></p>
     <p><strong>Leave blank if Not present</strong></p>
-    <div class="field">
+    <div class="form-group">
       <%= form.fields_for :bill_parts do |bill_part_form|%>
-        <div class="form-group">
-          <%= bill_part_form.label bill_part_form.object.user.name%>
-          <%= bill_part_form.collection_select :participant_id , User.all ,:id , :name,{},{class:"hidden"}%>
-        </div>
-        <div class="form-group">
-          <%= bill_part_form.label :amount%>
-          <%= bill_part_form.number_field :amount, min:0%>
+        <div class="">
+          <div class="form-group">
+            <%= bill_part_form.label bill_part_form.object.user.name%>
+            <%= bill_part_form.collection_select :participant_id , User.all ,:id , :name,{},{class:"hidden"}%>
+          </div>
+          <div class="form-group">
+            <%= bill_part_form.number_field :amount, min:0%>
+          </div>
         </div>
       <%end%>
     </div>

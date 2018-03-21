@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Bills</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Bill ID</th>
+      <th>User id</th>
+      <th>User name</th>
+      <th>Amount Paid</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bill_parts.each do |bill_part| %>
+      <tr>
+        <td><%= bill_part.bill_id %></td>
+        <td><%= bill_part.participant_id %></td>
+        <td><%= bill_part.user.name %></td>
+        <td><%= bill_part.amount %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
