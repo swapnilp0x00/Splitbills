@@ -51,25 +51,31 @@ class User < ApplicationRecord
     final_hash
   end
 
-  # def self.generate_ui_from_hash(current_user)
-  #   ows = {}
-  #   lents = {}
-  #   total_borrowing = current_user.total_borrowing
-  #   my_amount = total_borrowing[current_user.id]
-  #   total_borrowing.each do |key,value|
-  #     if key != current_user.id
-  #       unless check_if_same_sign(my_amount, value)
-  #         temp = my_amount + value
-  #         if temp > 0
-  #           if my_amount < 0
-  #             ows[current_user.id] = {key : my_amount}
-  #           elsif my_amount > 0
-  #             lents[current_user.id] = {key : my_amount}
-  #           end
-  #         else
-  #         end
-  #       end
-  #     end
-  #   end
-  # end
+
+  def self.check_if_same_sign(num1, num2)
+    num1<0 == num2<0
+  end
+
+  def self.generate_ui_from_hash(current_user)
+    owes = {}
+    lends = {}
+    total_borrowing = current_user.total_borrowing
+    my_amount = total_borrowing[current_user.id]
+    total_borrowing.each do |key,value|
+      temp = my_amount
+      if key != current_user.id
+        unless check_if_same_sign(temp, value)
+          temp = my_amount + value
+          # owes
+          if my_amount < 0
+            owes[key] = [my_amount.abs,value.abs].min
+          # lents
+          elsif my_amount > 0
+            lends[key] = [my_amount.abs,value.abs].min
+          end
+        end
+      end
+    end
+    [owes,lends]
+  end
 end

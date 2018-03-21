@@ -1,31 +1,39 @@
-<div class="">
-  <h1>Welcome <%=current_user.name%> to split App</h1>
-  <h1>User id : <%=current_user.id%></h1>
+<div class="container">
+  <h3>Welcome <%=current_user.name%> to SplitApp</h3>
+  <h3>User id : <%=current_user.id%></h3>
 </div>
 
 
   <div class="container">
-    <%if !@amount.nil?%>
-      <%if @amount > 0%>
-        <h1>You have total lent : <%=@amount%> Rs</h1>
-      <%elsif @amount < 0%>
-        <h1>You have total borrowed : <%=@amount.abs%> Rs</h1>
-      <%else%>
-        <h1>You don't borrow or lent anything</h1>
-      <%end%>
-    <%end%>
-  </div>
+    <div class="container well well-sm">
+        <%=final_status(@amount)%>
+   </div>
 
-  <div class="container">
+    <div class="container">
+        <div class="col-md-6">
+          <h3>What You Owe</h3>
+          <%=hash_iterator(@owes_hash,'owe')%>
+        </div>
+       <div class="col-md-6">
+         <h3>What You lent</h3>
+         <%=hash_iterator(@lends_hash,'lend')%>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <%=create_new_bill_button%>
+  <%=create_show_bills_button%>
+
+  <!-- This is for debugging purposes -->
+  <!-- <div class="container">
     <p>positive value means you have lent money</p>
     <p>negative value means you have borrowed money</p>
-    
     <p><strong>hash for each bill</strong></p>
     <%=@billwise_hash%>
     <p><strong>total hash</strong></p>
     <%=@total_hash%>
-  </div>
-
-<br/>
-<%=create_new_bill_button%>
-<%=create_show_bills_button%>
+    <p><strong>Owes hash</strong></p>
+    <%=@owes_hash%>
+    <p><strong>Lends hash</strong></p>
+    <%=@lends_hash%>
+  </div> -->
