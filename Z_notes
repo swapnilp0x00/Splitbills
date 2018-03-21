@@ -6,3 +6,5 @@ Bill
     <%= f.label :Participant %>
     <%= f :user_id, id: :bill_user_id %>
   </div> -->
+
+uncomment validations on bill

@@ -15,8 +15,6 @@ class BillsController < ApplicationController
   # GET /bills/new
   def new
     @bill = current_user.bills.new
-    # Just a work around
-    User.order(:id).each{|user| @bill.bill_parts.build(participant_id:user.id) }
   end
 
   # GET /bills/1/edit

@@ -11,42 +11,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :event %>
-    <%= form.text_field :event, id: :bill_event %>
+  <div class="col-md-6">
+    <div class="form-group">
+      <%= form.label :event %>
+      <%= form.text_field :event, id: :bill_event %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :date %>
+      <%= form.date_select :date, id: :bill_date %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :location %>
+      <%= form.text_field :location, id: :bill_location %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :total_amount %>
+      <%= form.number_field :total_amount, id: :bill_total_amount , min: 0%>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.date_select :date, id: :bill_date %>
+  <div class="col-md-6">
+    <p><strong>Enter 0 if present and not paid</strong></p>
+    <p><strong>Leave blank if Not present</strong></p>
+    <div class="field">
+      <%= form.fields_for :bill_parts do |bill_part_form|%>
+        <div class="form-group">
+          <%= bill_part_form.label bill_part_form.object.user.name%>
+          <%= bill_part_form.collection_select :participant_id , User.all ,:id , :name,{},{class:"hidden"}%>
+        </div>
+        <div class="form-group">
+          <%= bill_part_form.label :amount%>
+          <%= bill_part_form.number_field :amount, min:0%>
+        </div>
+      <%end%>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :location %>
-    <%= form.text_field :location, id: :bill_location %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total_amount %>
-    <%= form.number_field :total_amount, id: :bill_total_amount , min: 0%>
-  </div>
-
-  <h2>Leave amount blank if participant was not present</h2>
-  <h2>Enter zero if participant was present and didn't pay</h2>
-  <div class="field">
-    <%= form.fields_for :bill_parts do |bill_part_form|%>
-      <div class="field">
-        <%= bill_part_form.label :participant_id%>
-        <%= bill_part_form.collection_select :participant_id , User.all ,:id , :name,include_blank: true,disabled:true%>
-      </div>
-      <div class="field">
-        <%= bill_part_form.label :amount%>
-        <%= bill_part_form.number_field :amount, min:0%>
-      </div>
-    <%end%>
-  </div>
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Create Bill", class: "btn btn-primary btn-success"%>
   </div>
 <% end %>

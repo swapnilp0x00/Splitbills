@@ -11,7 +11,7 @@
       <th>Total amount</th>
       <th>Created by</th>
       <th>Added</th>
-      <th colspan="3"></th>
+      <th colspan="3">Actions</th>
     </tr>
   </thead>
 
@@ -24,8 +24,8 @@
         <td><%= bill.total_amount %></td>
         <td><%= bill.user.name %></td>
         <td><%= time_ago_in_words(bill.created_at) + ' ago' %></td>
-        <td><%= link_to 'Show', bill %></td>
-        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', bill  , class: "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy', bill, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-primary btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -33,4 +33,4 @@
 
 <br>
 
-<%= link_to 'New Bill', new_bill_path %>
+<%= link_to 'New Bill', new_bill_path , class: "btn btn-primary btn-success"%>

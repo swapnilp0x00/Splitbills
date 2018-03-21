@@ -9,4 +9,12 @@ class Bill < ApplicationRecord
   reject_if: lambda{|attrs| attrs['participant_id'].blank? || attrs['amount'].blank?}
 
   validates :total_amount, :numericality => { :greater_than_or_equal_to => 0 }
+
+  # work around
+  # There are always bill parts present on bill
+  after_initialize do |bill|
+    if bill.bill_parts.empty?
+      User.order(:id).each{|user| bill.bill_parts.build(participant_id:user.id) }
+    end
+  end
 end
