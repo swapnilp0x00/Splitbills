@@ -17,4 +17,16 @@ class Bill < ApplicationRecord
       User.order(:id).each{|user| bill.bill_parts.build(participant_id:user.id) }
     end
   end
+
+  def get_total_bill_amount
+    total_bill_amount = BillPart.where(bill_id: self.id).sum(:amount)
+  end
+
+  def get_number_of_participants
+    number_of_participants = BillPart.where(bill_id: self.id).count
+  end
+
+  def get_split_per_head
+    self.get_total_bill_amount / self.get_number_of_participants
+  end
 end

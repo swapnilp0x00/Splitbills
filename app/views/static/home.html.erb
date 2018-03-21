@@ -1,2 +1,9 @@
 <h1>Welcome to split App</h1>
+
+  <%if @amount > 0%>
+    <h1>You lent : <%=@amount%></h1>
+  <%elsif @amount < 0%>
+    <h1>You borrowed : <%=@amount.abs%></h1>
+  <%end%>
+
 <%=create_new_bill_button%>
